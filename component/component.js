@@ -4,6 +4,16 @@ let REGIONS = [
   "tk1a",
 ];
 
+let DISKPLAN = [
+  "2",
+  "4",
+];
+
+let DISKCONNECTION = [
+  "virtio",
+  "ide",
+];
+
 /* v----- Do not change anything between here
  *       (the DRIVERNAME placeholder will be automatically replaced during build) */
 define('ui/components/machine/driver-%%DRIVERNAME%%/component', ['exports', 'ember', 'ui/mixins/driver'], function (exports, _ember, _uiMixinsDriver) {
@@ -11,18 +21,35 @@ define('ui/components/machine/driver-%%DRIVERNAME%%/component', ['exports', 'emb
   exports['default'] = _ember['default'].Component.extend(_uiMixinsDriver['default'], {
     driverName: '%%DRIVERNAME%%',
     //sakuracloudConfig: Ember.computed.alias('model.%%DRIVERNAME%%Config'),
-    regionChoices: REGIONS,
+    regionChoices        : REGIONS,
+    diskPlanChoices      : DISKPLAN,
+    diskConnectionChoices: DISKCONNECTION,
 
 /* ^--- And here */
 
     // Write your component here, starting with setting 'model' to a machine with your config populated
     bootstrap: function() {
       let config = this.get('store').createRecord({
-        type        : '%%DRIVERNAME%%Config',
-        region      : 'is1a',
-        accessToken : '',
-        secretToken : '',
-        connectedSwitch: '',
+        type                : '%%DRIVERNAME%%Config',
+        region              : 'is1a',
+        accessToken         : '',
+        secretToken         : '',
+        core                : '1',
+        memorySize          : '',
+        diskName            : 'disk001',
+        diskPlan            : '4',
+        diskSize            : '20480',
+        diskConnection      : 'virtio',
+        connectedSwitch     : '',
+        dnsZone             : '',
+        privateIp           : '',
+        privateSubnetMask   : '255.255.255.0',
+        packetFilter        : '',
+        privatePacketFilter : '',
+        gateway             : '',
+        gslb                : '',
+        sshKey              : '',
+        privateIpOnly       : '',
       });
 
       this.set('model', this.get('store').createRecord({

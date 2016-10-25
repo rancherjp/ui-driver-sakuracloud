@@ -4,7 +4,7 @@
     {{partial "host/add-common"}}
 
     <div class="over-hr r-mt20 r-mb20">
-      <span>アカウント情報</span>
+      <span>アカウントアクセス</span>
     </div>
 
     {{!-- An example input option --}}
@@ -49,8 +49,144 @@
     </div>
 
     <div class="over-hr r-mt20 r-mb20">
-      <span>ネットワーク情報</span>
+      <span>インスタンス</span>
     </div>
+
+    <div class="row form-group">
+      <div class="col-md-2 form-label">
+        <label class="form-control-static">CPU</label>
+      </div>
+      <div class="col-md-4">
+        {{input type="text" value=model.%%DRIVERNAME%%Config.core classNames="form-control" placeholder="CPUs"}}
+      </div>
+      <div class="col-md-2 form-label">
+        <label class="form-control-static">メモリ</label>
+      </div>
+      <div class="col-md-4">
+        {{input type="text" value=model.%%DRIVERNAME%%Config.memorySize classNames="form-control" placeholder='メモリ数(GB)'}}
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-md-2 form-label">
+        <label class="form-control-static">ディスク名</label>
+      </div>
+      <div class="col-md-4">
+        {{input type="text" value=model.%%DRIVERNAME%%Config.diskName classNames="form-control" placeholder="ディスク名を入力してください"}}
+      </div>
+      <div class="col-md-2 form-label">
+        <label class="form-control-static">ディスクプラン</label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control" onchange={{action (mut model.%%DRIVERNAME%%Config.diskPlan) value="target.value"}}>
+          {{#each diskPlanChoices as |choice|}}
+            <option value={{choice}} selected={{eq model.%%DRIVERNAME%%Config.diskPlan choice}}>{{choice}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+
+    <div class="over-hr r-mt20 r-mb20">
+      <span>ネットワーク</span>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-md-2 form-label">
+        <label class="form-control-static">スイッチ/ルーター ID</label>
+      </div>
+      <div class="col-md-4">
+        {{input type="text" value=model.%%DRIVERNAME%%Config.connectedSwitch classNames="form-control" placeholder="スイッチ/ルーターのIDを入力してください"}}
+      </div>
+      <div class="col-md-2 form-label">
+        <label class="form-control-static">DNSゾーン</label>
+      </div>
+      <div class="col-md-4">
+        {{input type="text" value=model.%%DRIVERNAME%%Config.dnsZone classNames="form-control" placeholder='クラウドDNSへ登録する際の対象ドメイン名を入力してください'}}
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-md-2 form-label">
+        <label class="form-control-static">プライベート IP</label>
+      </div>
+      <div class="col-md-4">
+        {{input type="text" value=model.%%DRIVERNAME%%Config.privateIp classNames="form-control" placeholder="eth1 の IP アドレスを入力してください"}}
+      </div>
+      <div class="col-md-2 form-label">
+        <label class="form-control-static">サブネットマスク</label>
+      </div>
+      <div class="col-md-4">
+        {{input type="text" value=model.%%DRIVERNAME%%Config.privateSubnetMask classNames="form-control" placeholder="eth1 のサブネットマスクを入力してください"}}
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-md-2 form-label">
+        <label class="form-control-static">パケットフィルター ID(eth0)</label>
+      </div>
+      <div class="col-md-4">
+        {{input type="text" value=model.%%DRIVERNAME%%Config.packetFilter classNames="form-control" placeholder="eth0向けのパケットフィルター名/IDを入力してください"}}
+        <p class="help-block">eth0: 共有セグメント</p>
+      </div>
+      <div class="col-md-2 form-label">
+        <label class="form-control-static">パケットフィルター ID(eth1)</label>
+      </div>
+      <div class="col-md-4">
+        {{input type="text" value=model.%%DRIVERNAME%%Config.privatePacketFIlter classNames="form-control" placeholder="eth1向けのパケットフィルター名/IDを入力してください"}}
+        <p class="help-block">eth1: プライベートセグメント</p>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-md-2 form-label">
+        <label class="form-control-static">ゲートウェイ</label>
+      </div>
+      <div class="col-md-4">
+        {{input type="text" value=model.%%DRIVERNAME%%Config.gateway classNames="form-control" placeholder="ゲートウェイを入力してください"}}
+        <p class="help-block">eth1を利用する場合は必須となります</p>
+      </div>
+      <div class="col-md-2 form-label">
+        <label class="form-control-static">GSLB名</label>
+      </div>
+      <div class="col-md-4">
+        {{input type="text" value=model.%%DRIVERNAME%%Config.gslb classNames="form-control" placeholder="GSLB名を入力してください"}}
+        <p class="help-block">存在しない場合は新規作成されます</p>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-md-2 form-label">
+        <label class="form-control-static">SSH キー</label>
+      </div>
+      <div class="col-md-8">
+        {{input type="text" value=model.%%DRIVERNAME%%Config.sshKey classNames="form-control" placeholder="SSH秘密鍵へのパスを入力してください"}}
+        <p class="help-block">省略した場合は新規にキーペアが生成されます</p>
+      </div>
+    </div>
+
+    <div class="over-hr r-mt20 r-mb20">
+      <span>オプション</span>
+    </div>
+
+    <table style="margin: 0 auto;">
+        <tr>
+          <td style="padding: 0 10px;">
+            <div class="form-label checkbox">
+              <label>{{input type="checkbox" checked=model.%%DRIVERNAME%%Config.privateIpOnly}} 公開セグメントのNICを無効にしeth1のみを使う</label>
+            </div>
+          </td>
+          <td style="padding: 0 10px;">
+            <div class="form-label checkbox">
+              <label>{{input type="checkbox" checked=model.%%DRIVERNAME%%Config.autoReboot}} @auto-reboot 特殊タグ</label>
+            </div>
+          </td>
+          <td style="padding: 0 10px;">
+            <div class="form-label checkbox">
+              <label>{{input type="checkbox" checked=model.%%DRIVERNAME%%Config.enablePasswordAuto}} パスワード認証を有効化する</label>
+            </div>
+          </td>
+        </tr>
+      </table>
 
   {{!-- This partial contains the Labels and Advanced Options fields --}}
   {{partial "host/add-options"}}
