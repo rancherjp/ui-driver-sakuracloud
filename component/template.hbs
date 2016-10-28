@@ -41,10 +41,9 @@
       <div class="col-md-10">
         {{input type="password"
           class="form-control"
-          value=model.%%DRIVERNAME%%Config.secretToken
+          value=model.%%DRIVERNAME%%Config.accessTokenSecret
           placeholder="シークレットトークンを入力してください"
         }}
-        <p class="help-block">{{format-html-message 'machine.driverSakuracloud.secretKeyHelp'}}</p>
       </div>
     </div>
 
@@ -54,7 +53,7 @@
 
     <div class="row form-group">
       <div class="col-md-2 form-label">
-        <label class="form-control-static">CPU</label>
+        <label class="form-control-static">CPUコア数</label>
       </div>
       <div class="col-md-4">
         {{input type="text" value=model.%%DRIVERNAME%%Config.core classNames="form-control" placeholder="CPUs"}}

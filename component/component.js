@@ -33,7 +33,7 @@ define('ui/components/machine/driver-%%DRIVERNAME%%/component', ['exports', 'emb
         type                : '%%DRIVERNAME%%Config',
         region              : 'is1a',
         accessToken         : '',
-        secretToken         : '',
+        accessTokenSecret   : '',
         core                : '1',
         memorySize          : '',
         diskName            : 'disk001',
@@ -50,6 +50,8 @@ define('ui/components/machine/driver-%%DRIVERNAME%%/component', ['exports', 'emb
         gslb                : '',
         sshKey              : '',
         privateIpOnly       : '',
+        autoReboot          : '',
+        enablePasswordAuth  : '',
       });
 
       this.set('model', this.get('store').createRecord({
