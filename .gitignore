@@ -17,3 +17,6 @@ npm-debug.log
 testem.log
 .DS_Store
 .tern-port
+
+# specific driver
+docker-machine-driver-sakuracloud
