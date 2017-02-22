@@ -1,7 +1,7 @@
 .machine-driver.%%DRIVERNAME%% {
-  background-image: url('sakuracloud.gif');
+  background-image: url('sakuracloud.png');
 }
 
 .catalog-icon.%%DRIVERNAME%% {
-  background-image: url('sakuracloud.gif');
+  background-image: url('sakuracloud.png');
 }
