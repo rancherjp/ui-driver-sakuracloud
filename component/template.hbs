@@ -77,11 +77,13 @@
         <label class="form-control-static">ディスクプラン</label>
       </div>
       <div class="col-md-4">
-        <select class="form-control" onchange={{action (mut model.%%DRIVERNAME%%Config.diskPlan) value="target.value"}}>
-          {{#each diskPlanChoices as |choice|}}
-            <option value={{choice}} selected={{eq model.%%DRIVERNAME%%Config.diskPlan choice}}>{{choice}}</option>
-          {{/each}}
-        </select>
+        {{new-select
+          classNames="form-control"
+          content=diskPlanChoices
+          optionLabelPath='displayName'
+          optionValuePath='plan'
+          value=model.%%DRIVERNAME%%Config.diskPlan
+        }}
       </div>
     </div>
 

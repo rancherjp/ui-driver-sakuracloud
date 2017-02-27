@@ -4,9 +4,16 @@ let REGIONS = [
   "tk1a",
 ];
 
-let DISKPLAN = [
-  "2",
-  "4",
+let DISKPLAN =
+[
+  {
+    "displayName": "HDD",
+    "plan": "2",
+  },
+  {
+    "displayName": "SSD",
+    "plan": "4",
+  }
 ];
 
 let DISKCONNECTION = [
